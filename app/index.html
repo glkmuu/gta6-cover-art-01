@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE COVER — GTA 6-Style Cover Art Maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <div id="brand">
+    <span id="brand-mark">VC</span>
+    <div>
+      <h1 id="app-title">VICE COVER</h1>
+      <p id="app-tagline">Turn your photo into GTA-style cover art. 100% offline — photos never leave your machine.</p>
+    </div>
+  </div>
+  <div id="top-actions">
+    <button id="undo-btn" type="button" title="Undo (Ctrl+Z)">↩ Undo</button>
+    <button id="redo-btn" type="button" title="Redo (Ctrl+Y)">↪ Redo</button>
+    <button id="export-btn" type="button">⬇ Export PNG</button>
+  </div>
+</header>
+
+<main id="studio">
+  <section id="editor-panel" aria-label="Cover editor">
+    <div id="preview-wrap">
+      <canvas id="preview-canvas" width="1080" height="1080"></canvas>
+      <p id="preview-hint">Click a panel to select it, then drag it to reposition the photo. Scroll over a panel to zoom.</p>
+    </div>
+    <div id="panel-strip" aria-label="Panels"></div>
+  </section>
+
+  <aside id="controls" aria-label="Cover controls">
+    <section class="control-group" id="photos-group">
+      <h2>1 · Photos</h2>
+      <label id="upload-label" for="photo-input">＋ Add your photos</label>
+      <input id="photo-input" type="file" accept="image/*" multiple>
+      <p class="note">Or drop image files anywhere on this page. JPG / PNG / WebP.</p>
+      <div id="photo-tray" aria-label="Loaded photos"></div>
+      <div class="row">
+        <button id="fill-all-btn" type="button">Fill every panel with selected photo</button>
+      </div>
+      <p class="note">Two free sample photos are loaded for you to try right away.</p>
+    </section>
+
+    <section class="control-group" id="layout-group">
+      <h2>2 · Layout</h2>
+      <div id="layout-picker" role="radiogroup" aria-label="Poster layout">
+        <button type="button" data-layout="vice-grid" class="layout-btn is-active" aria-checked="true">Vice Grid · 3 panels</button>
+        <button type="button" data-layout="duo" class="layout-btn" aria-checked="false">Duo · hero + 2</button>
+        <button type="button" data-layout="quad" class="layout-btn" aria-checked="false">Quad · 2 × 2</button>
+        <button type="button" data-layout="hero" class="layout-btn" aria-checked="false">Hero · full bleed</button>
+      </div>
+      <label class="field">Panel gap
+        <input id="gap-range" type="range" min="0" max="24" step="1" value="10">
+        <span id="gap-value">10 px</span>
+      </label>
+    </section>
+
+    <section class="control-group" id="caption-group">
+      <h2>3 · Caption</h2>
+      <label class="field">Title
+        <input id="title-input" type="text" value="VICE CITY" maxlength="24" autocomplete="off">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle-input" type="text" value="WELCOME TO THE SUNSHINE STATE" maxlength="48" autocomplete="off">
+      </label>
+      <div class="row">
+        <label class="field">Title size
+          <input id="title-size-range" type="range" min="60" max="170" step="2" value="120">
+        </label>
+        <label class="field">Title spot
+          <select id="title-spot-select">
+            <option value="bottom" selected>Bottom band</option>
+            <option value="top">Top band</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label class="field">Title ink
+          <select id="title-ink-select">
+            <option value="sunset" selected>Sunset white → pink</option>
+            <option value="gold">Palm gold</option>
+            <option value="neon">Neon cyan → magenta</option>
+            <option value="plain">Plain white</option>
+          </select>
+        </label>
+        <label class="field check"><input id="title-outline-check" type="checkbox" checked> Heavy outline</label>
+      </div>
+    </section>
+
+    <section class="control-group" id="grade-group">
+      <h2>4 · Grade &amp; finish</h2>
+      <div id="grade-picker" role="radiogroup" aria-label="Colour grade">
+        <button type="button" data-grade="vice-sunset" class="grade-btn is-active" aria-checked="true">Vice Sunset</button>
+        <button type="button" data-grade="neon-night" class="grade-btn" aria-checked="false">Neon Night</button>
+        <button type="button" data-grade="palm-gold" class="grade-btn" aria-checked="false">Palm Gold</button>
+        <button type="button" data-grade="teal-dusk" class="grade-btn" aria-checked="false">Teal Dusk</button>
+        <button type="button" data-grade="noir" class="grade-btn" aria-checked="false">Noir</button>
+      </div>
+      <label class="field">Grade strength
+        <input id="grade-strength-range" type="range" min="0" max="100" step="5" value="80">
+        <span id="grade-strength-value">80%</span>
+      </label>
+      <div class="row checks">
+        <label class="field check"><input id="grain-check" type="checkbox" checked> Film grain</label>
+        <label class="field check"><input id="vignette-check" type="checkbox" checked> Vignette</label>
+        <label class="field check"><input id="skyline-check" type="checkbox" checked> Sun &amp; palms</label>
+      </div>
+      <label class="field">Selected panel zoom
+        <input id="zoom-range" type="range" min="100" max="260" step="5" value="100">
+        <span id="zoom-value">100%</span>
+      </label>
+      <div class="row">
+        <button id="cycle-photo-btn" type="button">Next photo in selected panel</button>
+        <button id="reset-panel-btn" type="button">Reset selected panel</button>
+      </div>
+    </section>
+
+    <section class="control-group" id="export-group">
+      <h2>5 · Export</h2>
+      <div id="size-picker" role="radiogroup" aria-label="Export size">
+        <button type="button" data-size="1080x1080" class="size-btn is-active" aria-checked="true">1080 × 1080 · Square</button>
+        <button type="button" data-size="1080x1350" class="size-btn" aria-checked="false">1080 × 1350 · Portrait</button>
+        <button type="button" data-size="1920x1080" class="size-btn" aria-checked="false">1920 × 1080 · Wide</button>
+      </div>
+      <p class="note">Exports a PNG at the exact size above. Three clicks: photo → caption → export.</p>
+    </section>
+  </aside>
+</main>
+
+<footer id="footer">
+  <p>VICE COVER is an original fan-made tool. Not affiliated with Rockstar Games. All lettering, grades and artwork are drawn by this app — no game assets, no game fonts.</p>
+</footer>
+
+<script src="src/cover.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>

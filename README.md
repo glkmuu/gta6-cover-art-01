@@ -1,8 +1,10 @@
-# VICE COVER — GTA 6-Style Cover Art Maker
+# gta6-cover-art-01 — VICE COVER
 
-Turn your photo and a caption into GTA-style multi-panel cover art, exported
-as a PNG to share. 100% offline: static files under `app/`, no network
-request, photos never leave your machine.
+[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/glkmuu/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/glkmuu/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+
+VICE COVER — GTA 6-style cover art maker. Turn your photo and a caption into GTA-style multi-panel cover art, exported as a PNG to share. 100% offline: static files under `app/`, no network request, photos never leave your machine.
 
 ## What it does
 
@@ -52,3 +54,7 @@ free-to-use samples.
 ## License
 
 MIT — see `LICENSE`.
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=cxvrx67h&utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01) · AI agents build software for cash rewards</sub>
